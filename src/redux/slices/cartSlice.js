@@ -10,14 +10,6 @@ export const fetchOrders = createAsyncThunk('orders/fetchOrders', async () => {
   return response;
 });
 
-// export const deleteOrders = createAsyncThunk(
-//   'orders/delete',
-//   async ({ _id }) => {
-//     await deleteOrder.delete(_id);
-//     return { _id };
-//   }
-// );
-
 export const deleteorders = createAsyncThunk(
   'orders/delete',
   async ({ _id }) => {
@@ -36,9 +28,11 @@ export const cartSlice = createSlice({
   },
 
   reducers: {
-    // deleteOrder: (state, action) => {
-    //   return state.filter((order) => order._id !== action.payload._id);
-    // }
+    deleteOrder: (state, { payload }) => {
+      state.allOrders = state.allOrders.filter(
+        (book) => book.id !== payload.id
+      );
+    }
   },
   extraReducers: (builder) => {
     builder

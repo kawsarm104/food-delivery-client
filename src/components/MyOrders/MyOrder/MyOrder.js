@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ButtonGroup, Modal } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteorders } from '../../../redux/slices/cartSlice';
+import { deleteOrder, deleteorders } from '../../../redux/slices/cartSlice';
 import './MyOrder.css';
 
 const MyOrder = (props) => {
@@ -67,7 +67,10 @@ const MyOrder = (props) => {
           <ButtonGroup variant="secondary" onClick={handleClose}>
             Cancel
           </ButtonGroup>
-          <Button variant="primary" onClick={() => dispatch(deleteorders(_id))}>
+          <Button
+            variant="primary"
+            onClick={() => dispatch(deleteOrder(props.userData))}
+          >
             Confirm
           </Button>
         </Modal.Footer>
