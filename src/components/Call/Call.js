@@ -20,7 +20,7 @@ const Call = () => {
             
                 <h4 className='text-st mt-5 m-3'>Call us Anytime to make order</h4>
                 
-                <p className='nmbr mt-5'>90-500-28-999</p>
+                <p className='nmbr mt-5'>+8801515247103</p>
                 </div>
 
             </div>
