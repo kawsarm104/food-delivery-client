@@ -1,45 +1,19 @@
-import React, { useEffect, useState } from "react";
-import useAuth from "../../hooks/useAuth";
-import MyOrder from "./MyOrder/MyOrder";
-// React toastify 
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useEffect, useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import MyOrder from './MyOrder/MyOrder';
+import { useSelector } from 'react-redux';
+
+// React toastify
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyOrders = () => {
   const { user } = useAuth();
-  const [allOrders, setAllOrders] = useState([]);
-    const notify = () => toast.success("Order deleted successfully");
-  // Loading all orders
-  useEffect(() => {
-    const url = "https://still-peak-01540.herokuapp.com/orders";
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setAllOrders(data);
-      });
-  }, []);
-  // console.log(typeof(alluser));
-  const handleDeleteButton = (id) => {
-    // const proceed = window.confirm("Are you sure you want to delete ?");
-    const proceed = true;
-    if (proceed) {
-      fetch(`https://still-peak-01540.herokuapp.com/orders/${id}`, {
-        method: "DELETE",
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.deletedCount > 0) {
-            // alert("deleted successfully");
-            notify(); // import <ToastContainer /> at bottom of div
-            const remainingUsers = allOrders.filter((user) => user._id !== id);
-            setAllOrders(remainingUsers);
-          }
-        });
-    }
-  };
-  // filtering uniq/each user order
+  const allOrders = useSelector((state) => state.cart.allOrders);
+
+  const notify = () => toast.success('Order deleted successfully');
+
   const uniqUserOrder = allOrders.filter((order) => order.email === user.email);
-  //   console.log(uniqUserOrder, "uniquser");
   return (
     <div className="container ">
       <div className="row mt-5">
@@ -63,7 +37,6 @@ const MyOrders = () => {
                   key={userData._id}
                   index={index}
                   userData={userData}
-                  handleDeleteButton={handleDeleteButton}
                 ></MyOrder>
               ))}
             </tbody>

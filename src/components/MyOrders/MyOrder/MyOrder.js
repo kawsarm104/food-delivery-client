@@ -1,16 +1,30 @@
-import React, { useState } from "react";
-import { ButtonGroup, Modal } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import "./MyOrder.css";
-const MyOrder = (props) => {
-  const { _id, name, email, ordereditemname, address, phone , status} = props.userData;
-  // for delete
-  // console.log(props.userData);
-  // for Modal 
-   const [show, setShow] = useState(false);
+import React, { useEffect, useState } from 'react';
+import { ButtonGroup, Modal } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteorders } from '../../../redux/slices/cartSlice';
+import './MyOrder.css';
 
-   const handleClose = () => setShow(false);
-   const handleShow = () => setShow(true);
+const MyOrder = (props) => {
+  const { _id, name, email, ordereditemname, address, phone, status } =
+    props.userData;
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const dispatch = useDispatch();
+
+  // const { order } = useSelector((state) => state);
+  // const dispatch = useDispatch();
+  // const { orders } = order;
+  // useEffect(() => {
+  //   getTodos(dispatch);
+  // }, []);
+
+  const handleDelete = (_id) => {
+    deleteorders(_id, dispatch);
+  };
+
   return (
     <>
       <tr>
@@ -24,7 +38,6 @@ const MyOrder = (props) => {
 
         <td>
           <button
-            // onClick={() => props.handleDeleteButton(_id)}
             onClick={handleShow}
             className="delete-btn btn btn-outline-danger border-0 "
             data-bs-toggle="modal"
@@ -34,7 +47,7 @@ const MyOrder = (props) => {
           </button>
         </td>
         <td>
-          <span className="badge rounded-pill bg-info text-dark">{status }</span>
+          <span className="badge rounded-pill bg-info text-dark">{status}</span>
         </td>
       </tr>
 
@@ -54,10 +67,7 @@ const MyOrder = (props) => {
           <ButtonGroup variant="secondary" onClick={handleClose}>
             Cancel
           </ButtonGroup>
-          <Button
-            variant="primary"
-            onClick={() => props.handleDeleteButton(_id)}
-          >
+          <Button variant="primary" onClick={() => dispatch(deleteorders(_id))}>
             Confirm
           </Button>
         </Modal.Footer>
