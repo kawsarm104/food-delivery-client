@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Spinner } from 'react-bootstrap';
-import Service from '../Service/Service';
+import React, { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
+import Service from "../Service/Service";
+
 
 const Services = () => {
   const [allServices, setAllServices] = useState([]);
   useEffect(() => {
-    const url = 'https://still-peak-01540.herokuapp.com/services';
+    const url = "https://still-peak-01540.herokuapp.com/services";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
@@ -22,15 +23,15 @@ const Services = () => {
   }
   return (
     <>
-      <div className="text-center mt-4">
+      <div className="text-center mt-4 container">
         {/* <h2>total {allServices.length} foods item got </h2> */}
-        <p className="text-warning fw-bolder fs-6">Quick pick It</p>
+        <p className="text-warning fw-bolder fs-6">Quick pick</p>
         <h1 className="fw-bolder ">Popular Goods</h1>
       </div>
-      <div className="container-fluid row mx-auto">
+      <div className="row mx-auto container">
         {allServices.map((service) => (
           <Service key={service._id} service={service}></Service>
-        ))}{' '}
+        ))}{" "}
       </div>
     </>
   );

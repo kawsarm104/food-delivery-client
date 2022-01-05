@@ -1,5 +1,10 @@
 .footer-class {
   background-color: #282932;
+  width: 100%;
+  
+}
+.new3{
+  border-top: 1px dotted white;
 }
 .facebook-icon:hover {
   color: blue;

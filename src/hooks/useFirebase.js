@@ -3,19 +3,20 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithPopup,
-  signOut
-} from 'firebase/auth';
-import { useEffect, useState } from 'react';
-import initializeAuthentication from '../firebase/firebase.init';
+  signOut,
+} from "firebase/auth";
+import { useEffect, useState } from "react";
+import initializeAuthentication from "../firebase/firebase.init";
 
 initializeAuthentication();
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   const auth = getAuth();
+  
 
   const signInUsingGoogle = () => {
     setIsLoading(true);
@@ -36,9 +37,9 @@ const useFirebase = () => {
       if (user) {
         setUser(user);
       } else {
-        setUser({});
+        setUser({})
       }
-      setIsLoading(false); // for reloading to login page issue
+      setIsLoading(false)// for reloading to login page issue 
     });
   }, []);
 
@@ -49,7 +50,7 @@ const useFirebase = () => {
     isLoading,
     setIsLoading,
     signInUsingGoogle,
-    logout
+    logout,
   };
 };
 

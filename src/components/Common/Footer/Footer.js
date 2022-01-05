@@ -2,8 +2,8 @@ import React from "react";
 import "./Footer.css";
 const Footer = () => {
   return (
-    <div className="footer-class">
-      <div className="mt-3  d-flex justify-content-center">
+    <div className="footer-class pb-3">
+      <div className="d-flex justify-content-center">
         <div className="m-5 p-5 d-flex align-items-center justify-content-center bg-warning rounded-3 w-50 text-center">
           <div className="text-center">
             <h5>Call us for make order now</h5>
@@ -21,6 +21,9 @@ const Footer = () => {
           Etiam consequat sem ullamcorper, euismod metus sit amet, tristique
           justo. Vestibulum mattis, nisi ut faucibus commodo, risus ex commodo.
         </p>
+       <div className="new3">
+       <p>© All Rights Reserved - 2020 </p>
+       </div>
       </div>
     </div>
   );
